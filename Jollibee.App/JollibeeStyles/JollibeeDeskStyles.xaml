@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TestWebApi.StyleResource">
+    <!--This sytle for fields that are names from object property    Segoe UI-->
+    <Style x:Key="FieldLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+
+    </Style>
+
+    <!--This sytle for fields that display data from object property      -->
+    <!--Calibri, Segoe UI, Lucida Calligraphy-->
+    <Style x:Key="FieldDataLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+    
+    <!--This sytle for fields that display Section Headers -->
+    <!--Calibri, Segoe UI, Lucida Calligraphy-->
+    <!--<Setter Property="Width" Value="200"/>-->
+    <Style x:Key="SectionHeaderLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="DarkGreen"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Background" Value="WhiteSmoke"/>
+    </Style>
+
+    <Style x:Key="LeftPanel" TargetType="StackPanel">
+        <Setter Property="Background" Value="LightGray"/>
+    </Style>
+    
+    <Style x:Key="GreyContent" TargetType="ContentControl">
+        <Setter Property="Background" Value="LightGray"/>
+        <!--<Setter Property="FontFamily" Value="Lucida Calligraphy"/>-->
+    </Style>
+    <Style x:Key="GreyGridContent" TargetType="Grid">
+        <Setter Property="Background" Value="LightGray"/>
+        <!--<Setter Property="FontFamily" Value="Lucida Calligraphy"/>-->
+    </Style>
+    
+    <Style x:Key="WhiteGridContent" TargetType="Grid">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    <Style x:Key="FieldTextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+    <Style x:Key="MarginBottom5" TargetType="Label">
+        <Setter Property="Margin" Value="0 0 0 5" />
+    </Style>
+    <Style x:Key="TextBoxWrap" TargetType="TextBox">
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="MaxLines" Value="2" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+</ResourceDictionary>

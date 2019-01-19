@@ -1,0 +1,78 @@
+﻿<Window x:Class="Jollibee.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jollibee.App"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        mc:Ignorable="d"               
+        Title="JobilleDesk" FontWeight="Bold" Height="450" Width="800" MinHeight="600" MinWidth="1100" Activated="Window_Activated"
+        Loaded="Window_Loaded" WindowState="Maximized" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Closing="Window_Closing">
+    <Window.Resources>
+
+        <Storyboard x:Key="sbShowLeftMenu" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-100,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideLeftMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-100,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+
+    </Window.Resources>
+    <Grid Style="{StaticResource GreyGridContent}" >
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="Resources/LoginImage.png"  Stretch="UniformToFill"/>
+        </Grid.Background>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="40" Margin="0,0,-0.4,0" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" >
+                <!--<Label Width="120" Content="OmniDesk" FontSize="20" FontWeight="Bold" Foreground="White"/>-->
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                <Label HorizontalAlignment="Center" Grid.Column="0" x:Name="NotifictaionLable" Height="53"  Margin="10 3" FontSize="25" Content="Jollibee" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="MediumVioletRed"/>
+
+            </StackPanel>
+
+          
+
+            <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="0,0,10,0"
+                        VerticalAlignment="Center" HorizontalAlignment="Right" >
+                <Label Height="30" FontSize="16" x:Name="Username" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Foreground="White"/>
+            </StackPanel>
+        </Grid>
+
+
+        <Grid Grid.Row="1" x:Name="GridMain" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0 0 0 0" Grid.Column="1">
+                <!-- Moved Applications and Customer TabControl to AddUserControl.xaml -->
+                <dragablz:TabablzControl TabStripPlacement="Left" FixedHeaderCount="100" Margin="0 0 0 0" Panel.ZIndex="-999" x:Name="MainTabControl" BorderBrush="{x:Null}">
+                   
+                </dragablz:TabablzControl>
+
+                <!--<Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="+" Foreground="Black" x:Name="AddTabButton" Click="AddTabButton_Click"/>
+                <Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="A+" Foreground="Black" x:Name="AutoTabButton" Click="AutoTabButton_Click" Visibility="Hidden"/>-->
+
+            </Grid>
+
+        </Grid>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="2018 Copyright@StraViso" FontSize="12" Foreground="Black"></Label>
+        </StackPanel>
+
+    </Grid>
+</Window>
