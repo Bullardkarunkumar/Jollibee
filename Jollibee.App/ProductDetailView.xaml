@@ -9,7 +9,7 @@
     <Grid Loaded="Grid_Loaded">
         <!--<Grid.Background>
             <ImageBrush ImageSource="Resources/product_Image.jpg"  Stretch="Fill"/>
-        </Grid.Background>-->        
+        </Grid.Background>-->
         <ListView x:Name="ProductsBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -18,12 +18,15 @@
             </ItemsControl.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
-                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
-                    </StackPanel>
+                    <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                        <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                            <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                            <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>       
+        </ListView>
     </Grid>
 </UserControl>

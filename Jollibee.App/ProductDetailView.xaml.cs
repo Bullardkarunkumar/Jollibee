@@ -30,34 +30,34 @@ namespace Jollibee.App
             {
                 this.ProductsBox.ItemsSource = new ProductsData[]
             {
-            new ProductsData{Title="Movie 1", ImageData=LoadImage("ProductItemBun.jpg")},
-            new ProductsData{Title="Movie 2", ImageData=LoadImage("ProductItemChicken.jpg")},
-            new ProductsData{Title="Movie 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg")},
-            new ProductsData{Title="Movie 4", ImageData=LoadImage("ProductItemPotato.jpg")},
-            new ProductsData{Title="Movie 1", ImageData=LoadImage("ProductItemBun.jpg")},
-            new ProductsData{Title="Movie 2", ImageData=LoadImage("ProductItemChicken.jpg")},
-            new ProductsData{Title="Movie 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg")},
-            new ProductsData{Title="Movie 4", ImageData=LoadImage("ProductItemPotato.jpg")}
+            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
+            new ProductsData{Title="Chicken 1", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
+            new ProductsData{Title="MaharajaBun 1", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
+            new ProductsData{Title="Potato 4", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"},
+            new ProductsData{Title="Bun 2", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
+            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
+            new ProductsData{Title="MaharajaBun 2", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
+            new ProductsData{Title="Potato 2", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"}
             };
             }
             else if (index == 1)
             {
                 this.ProductsBox.ItemsSource = new ProductsData[]
             {
-            new ProductsData{Title="Movie 1", ImageData=LoadImage("ProductItemBun.jpg")},
-            new ProductsData{Title="Movie 2", ImageData=LoadImage("ProductItemChicken.jpg")},
-            new ProductsData{Title="Movie 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg")}
+            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
+            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
+            new ProductsData{Title="MaharajaBun 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"}
             };
             }
             else
             {
                 this.ProductsBox.ItemsSource = new ProductsData[]
             {
-            new ProductsData{Title="Movie 1", ImageData=LoadImage("ProductItemBun.jpg")},
-            new ProductsData{Title="Movie 2", ImageData=LoadImage("ProductItemChicken.jpg")},
-            new ProductsData{Title="Movie 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg")},
-             new ProductsData{Title="Movie 4", ImageData=LoadImage("ProductItemPotato.jpg")},
-            new ProductsData{Title="Movie 1", ImageData=LoadImage("ProductItemBun.jpg")},
+            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
+            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
+            new ProductsData{Title="MaharajaBun 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
+             new ProductsData{Title="Potato 4", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"},
+            new ProductsData{Title="Bun 2", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
             };
             }
         }
@@ -70,6 +70,10 @@ namespace Jollibee.App
         {
 
             //  imageItems.ItemsSource = Directory.EnumerateFiles("E:/Karun_projects/Jollibee/Jollibee.App/Resources", "*.jpg");
+        }
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
         }
         public class ProductsData
         {
@@ -87,6 +91,13 @@ namespace Jollibee.App
                 set { this._ImageData = value; }
             }
 
-        }
+            private string _Price;
+            public string Price
+            {
+                get { return this._Price; }
+                set { this._Price = value; }
+            }
+
+        }       
     }
 }

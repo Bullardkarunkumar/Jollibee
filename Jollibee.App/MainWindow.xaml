@@ -51,8 +51,6 @@
                 <Label Height="30" FontSize="16" x:Name="Username" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Foreground="White"/>
             </StackPanel>
         </Grid>
-
-
         <Grid Grid.Row="1" x:Name="GridMain" Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2"/>
