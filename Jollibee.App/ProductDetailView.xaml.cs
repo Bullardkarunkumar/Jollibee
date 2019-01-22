@@ -26,7 +26,7 @@ namespace Jollibee.App
         ///  DetailedProduct SelectedProduct;
 
         MainWindow SelectedProduct=new MainWindow();
-
+        public event EventHandler UCButtonClicked;
 
 
         public ProductDetailView(int index)
@@ -57,11 +57,18 @@ namespace Jollibee.App
         }
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            //UCButtonClicked(this, e);
+
             ProductsData item = (ProductsData)ProductsBox.SelectedItem;
             //SelectedProduct = new DetailedProduct(item);         
 
-            //SelectedProduct.CallFromProductDetail(item);
-            SelectedProduct.Dispatcher.BeginInvoke(new Action(() => { SelectedProduct.CallFromProductDetail(item); }));
+            SelectedProduct.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SelectedProduct.CallFromProductDetail(item);
+                //SelectedProduct.MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
+                //SelectedProduct.MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;
+
+            }));
 
             //SelectedProduct.Show();
             //SelectedProduct = new SelectedProductDetails(item);

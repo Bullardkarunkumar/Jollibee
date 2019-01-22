@@ -19,7 +19,7 @@
 
     </Window.Resources>
     <Grid>
-        <Grid Grid.Row="0" Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel">
+        <Grid Grid.Row="0"  Visibility="{Binding MainWindowWithLeftPanelVisible}" Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel" >
             <!--<Grid.Background>
             <ImageBrush ImageSource="Resources/LoginImage.png"  Stretch="UniformToFill"/>
         </Grid.Background>-->
@@ -82,7 +82,7 @@
         </Grid>
 
 
-        <Grid Grid.Row="1"  x:Name="MainWindowWithOutLeftPanel">
+        <Grid Grid.Row="1" Visibility="{Binding MainWindowWithOutLeftPanelVisible}" x:Name="MainWindowWithOutLeftPanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="50"/>

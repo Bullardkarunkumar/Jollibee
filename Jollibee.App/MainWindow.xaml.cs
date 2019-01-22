@@ -21,9 +21,10 @@ namespace Jollibee.App
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {       
         ProductDetailView productDetailView;
         JollibeeSessionValues sessions;
+        int windowCount = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -78,11 +79,19 @@ namespace Jollibee.App
 
         private void Window_Activated(object sender, EventArgs e)
         {
-
+            if (windowCount!=0)
+            {
+                MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
+            }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //UC1.UCButtonClicked += new EventHandler(DoHide);
             GetProductsProfile();
+        }
+        private void DoHide(Object sender, EventArgs e)
+        {
+           // label1.Content = "Hidden";
         }
         private async void GetProductsProfile()
         {
@@ -117,38 +126,29 @@ namespace Jollibee.App
 
         public void CallFromProductDetail(ProductsData item)
         {
-            InitializeComponent();
-            MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
-            MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;
-            MainWindowWithLeftPanel.Unloaded += MainWindowWithLeftPanel_Unloaded;
-            var productsList = ProductsList.LoadProductsInfo(0);
-            ProductsData selectedItem = productsList.Where(t => t.Id == item.Id).Select(t => t).SingleOrDefault();
-            var uri = new Uri(selectedItem.ImageData.ToString());
-            ProductDetailImage.Source = new BitmapImage(uri);
-            ProductDesc.Content = selectedItem.Title;
-            ProductPrice.Content = selectedItem.Price;
-            FirstRibbonText.Content = "1 pc of " + selectedItem.Title;
-            SecondRibbonText.Content = selectedItem.Price;
-            this.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
+            windowCount = 1;
+            EventArgs obj = new EventArgs();            
+            int i = 0;
+            this.Activated += (ss, ee) =>
+            {
+                if (i++ == 0) //not the first time...
+                    Window_Activated(this, EventArgs.Empty);
+            };
+            //MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
+            //MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;           
+            //var productsList = ProductsList.LoadProductsInfo(0);
+            //ProductsData selectedItem = productsList.Where(t => t.Id == item.Id).Select(t => t).SingleOrDefault();
+            //var uri = new Uri(selectedItem.ImageData.ToString());
+            //ProductDetailImage.Source = new BitmapImage(uri);
+            //ProductDesc.Content = selectedItem.Title;
+            //ProductPrice.Content = selectedItem.Price;
+            //FirstRibbonText.Content = "1 pc of " + selectedItem.Title;
+            //SecondRibbonText.Content = selectedItem.Price;
+            //this.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
             //this.Show();
         }
 
-        private void MainWindowWithLeftPanel_Unloaded(object sender, RoutedEventArgs e)
-        {
-            MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
-            MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;
-          //  MainWindowWithLeftPanel.Unloaded += MainWindowWithLeftPanel_Unloaded;
-            var productsList = ProductsList.LoadProductsInfo(0);
-            ProductsData selectedItem = productsList.Where(t => t.Id == 1).Select(t => t).SingleOrDefault();
-            var uri = new Uri(selectedItem.ImageData.ToString());
-            ProductDetailImage.Source = new BitmapImage(uri);
-            ProductDesc.Content = selectedItem.Title;
-            ProductPrice.Content = selectedItem.Price;
-            FirstRibbonText.Content = "1 pc of " + selectedItem.Title;
-            SecondRibbonText.Content = selectedItem.Price;
-            this.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
-        }
-
+      
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
