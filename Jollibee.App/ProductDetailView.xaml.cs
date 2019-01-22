@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jollibee.App.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,43 +23,26 @@ namespace Jollibee.App
     public partial class ProductDetailView : UserControl
     {
         //this.TvBox.ItemsSource =null;
+        ///  DetailedProduct SelectedProduct;
+
+        MainWindow SelectedProduct=new MainWindow();
+
+
 
         public ProductDetailView(int index)
         {
             InitializeComponent();
             if (index == 0)
             {
-                this.ProductsBox.ItemsSource = new ProductsData[]
-            {
-            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
-            new ProductsData{Title="Chicken 1", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
-            new ProductsData{Title="MaharajaBun 1", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
-            new ProductsData{Title="Potato 4", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"},
-            new ProductsData{Title="Bun 2", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
-            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
-            new ProductsData{Title="MaharajaBun 2", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
-            new ProductsData{Title="Potato 2", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"}
-            };
+                this.ProductsBox.ItemsSource = ProductsList.LoadProductsInfo(index);
             }
             else if (index == 1)
             {
-                this.ProductsBox.ItemsSource = new ProductsData[]
-            {
-            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
-            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
-            new ProductsData{Title="MaharajaBun 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"}
-            };
+                this.ProductsBox.ItemsSource = ProductsList.LoadProductsInfo(index);
             }
             else
             {
-                this.ProductsBox.ItemsSource = new ProductsData[]
-            {
-            new ProductsData{Title="Bun 1", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
-            new ProductsData{Title="Chicken 2", ImageData=LoadImage("ProductItemChicken.jpg"),Price="50"},
-            new ProductsData{Title="MaharajaBun 3", ImageData=LoadImage("ProductItemMaharajaBun.jpg"),Price="100"},
-             new ProductsData{Title="Potato 4", ImageData=LoadImage("ProductItemPotato.jpg"),Price="5"},
-            new ProductsData{Title="Bun 2", ImageData=LoadImage("ProductItemBun.jpg"),Price="10"},
-            };
+                this.ProductsBox.ItemsSource = ProductsList.LoadProductsInfo(index);
             }
         }
         // for this code image needs to be a project resource
@@ -73,31 +57,16 @@ namespace Jollibee.App
         }
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            ProductsData item = (ProductsData)ProductsBox.SelectedItem;
+            //SelectedProduct = new DetailedProduct(item);         
 
+            //SelectedProduct.CallFromProductDetail(item);
+            SelectedProduct.Dispatcher.BeginInvoke(new Action(() => { SelectedProduct.CallFromProductDetail(item); }));
+
+            //SelectedProduct.Show();
+            //SelectedProduct = new SelectedProductDetails(item);
+            //SelectedProduct.Visibility = Visibility.Visible;
         }
-        public class ProductsData
-        {
-            private string _Title;
-            public string Title
-            {
-                get { return this._Title; }
-                set { this._Title = value; }
-            }
 
-            private BitmapImage _ImageData;
-            public BitmapImage ImageData
-            {
-                get { return this._ImageData; }
-                set { this._ImageData = value; }
-            }
-
-            private string _Price;
-            public string Price
-            {
-                get { return this._Price; }
-                set { this._Price = value; }
-            }
-
-        }       
     }
 }

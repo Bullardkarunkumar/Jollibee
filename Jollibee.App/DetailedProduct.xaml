@@ -1,0 +1,62 @@
+﻿<Window x:Class="Jollibee.App.DetailedProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jollibee.App"
+        mc:Ignorable="d"
+        Title="DetailedProduct" FontWeight="Bold" Height="450" Width="800" MinHeight="600" MinWidth="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="AliceBlue" Margin="0,10,-0.4,408.4" Grid.RowSpan="3" VerticalAlignment="Center" Height="152">
+            <Image x:Name="ProductDetailImage" Margin="0,0,0,57"/>
+            <StackPanel Margin="0,95,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label x:Name="ProductDesc" VerticalAlignment="Center" Foreground="Black" Background="Yellow" Height="24" Margin="0,0,0.4,0"></Label>
+                <Label x:Name="ProductPrice" VerticalAlignment="Center" Foreground="Black" Background="DeepPink" Height="24" Margin="0,0,0.4,0"></Label>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="2" Background="AliceBlue" Margin="0,0,-0.4,111.4" VerticalAlignment="Bottom" RenderTransformOrigin="0.511,-2.322" Height="278">
+            <Grid Background="red" Margin="0,0,0,235">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label x:Name="FirstRibbonText" Foreground="White"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label x:Name="SecondRibbonText" Foreground="White"></Label>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,64,0,175" Background="Red">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label VerticalAlignment="Center">Please provide your selection</Label>
+                </StackPanel>
+
+            </Grid>
+            <Grid Margin="0,108,0,0">
+                <ListView x:Name="SnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                                <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                    <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                    <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Background="Black" Height="106" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4"/>
+    </Grid>
+</Window>

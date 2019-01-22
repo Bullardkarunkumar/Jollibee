@@ -18,59 +18,123 @@
         </Storyboard>
 
     </Window.Resources>
-    <Grid Style="{StaticResource GreyGridContent}" >
-        <!--<Grid.Background>
+    <Grid>
+        <Grid Grid.Row="0" Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel">
+            <!--<Grid.Background>
             <ImageBrush ImageSource="Resources/LoginImage.png"  Stretch="UniformToFill"/>
         </Grid.Background>-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>            
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Height="40" Margin="0,0,-0.4,0" VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" >
-                <!--<Label Width="120" Content="OmniDesk" FontSize="20" FontWeight="Bold" Foreground="White"/>-->
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                <Label HorizontalAlignment="Center" Grid.Column="0" x:Name="NotifictaionLable" Height="53"  Margin="10 3" FontSize="25" Content="Jollibee" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="MediumVioletRed"/>
-
-            </StackPanel>
-
-          
-
-            <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="0,0,10,0"
-                        VerticalAlignment="Center" HorizontalAlignment="Right" >
-                <Label Height="30" FontSize="16" x:Name="Username" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Foreground="White"/>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" x:Name="GridMain" Background="Transparent">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Margin="0 0 0 0" Grid.Column="1">
-                <!-- Moved Applications and Customer TabControl to AddUserControl.xaml -->
-                <dragablz:TabablzControl TabStripPlacement="Left" FixedHeaderCount="100" Margin="0 0 0 0" Panel.ZIndex="-999" x:Name="MainTabControl" BorderBrush="{x:Null}">
-                   
-                </dragablz:TabablzControl>
-
-                <!--<Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="+" Foreground="Black" x:Name="AddTabButton" Click="AddTabButton_Click"/>
-                <Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="A+" Foreground="Black" x:Name="AutoTabButton" Click="AutoTabButton_Click" Visibility="Hidden"/>-->
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Height="100" Margin="0,-40,-0.4,0" VerticalAlignment="Bottom" Grid.RowSpan="2">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/LoginImage.png"  Stretch="UniformToFill"/>
+                </Grid.Background>
             </Grid>
 
+            <Grid Grid.Row="1" Height="40" Margin="0,0,-0.4,0" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" >
+                    <!--<Label Width="120" Content="OmniDesk" FontSize="20" FontWeight="Bold" Foreground="White"/>-->
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <Label HorizontalAlignment="Center" Grid.Column="0" x:Name="NotifictaionLable" Height="53"  Margin="10 3" FontSize="25" Content="Jollibee" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="MediumVioletRed"/>
+
+                </StackPanel>
+
+
+
+                <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="0,0,10,0"
+                        VerticalAlignment="Center" HorizontalAlignment="Right" >
+                    <Label Height="30" FontSize="16" x:Name="Username" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" x:Name="GridMain" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="0 0 0 0" Grid.Column="1">
+                    <!-- Moved Applications and Customer TabControl to AddUserControl.xaml -->
+                    <dragablz:TabablzControl  TabStripPlacement="Left" FixedHeaderCount="100" Margin="0 0 0 0" Panel.ZIndex="-999" x:Name="MainTabControl" BorderBrush="{x:Null}">
+
+                    </dragablz:TabablzControl>
+
+                    <!--<Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="+" Foreground="Black" x:Name="AddTabButton" Click="AddTabButton_Click"/>
+                <Button Height="50" Width="50" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"  Content="A+" Foreground="Black" x:Name="AutoTabButton" Click="AutoTabButton_Click" Visibility="Hidden"/>-->
+
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="2" Height="102" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom" Background="Black" Grid.RowSpan="2">
+
+            </Grid>
         </Grid>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="2018 Copyright@StraViso" FontSize="12" Foreground="Black"></Label>
-        </StackPanel>
+
+
+        <Grid Grid.Row="1"  x:Name="MainWindowWithOutLeftPanel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="AliceBlue" Margin="0,10,-0.4,408.4" Grid.RowSpan="3" VerticalAlignment="Center" Height="152">
+                <Image x:Name="ProductDetailImage" Margin="0,0,0,57"/>
+                <StackPanel Margin="0,95,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label x:Name="ProductDesc" VerticalAlignment="Center" Foreground="Black" Background="Yellow" Height="24" Margin="0,0,0.4,0"></Label>
+                    <Label x:Name="ProductPrice" VerticalAlignment="Center" Foreground="Black" Background="DeepPink" Height="24" Margin="0,0,0.4,0"></Label>
+                </StackPanel>
+
+            </Grid>
+            <Grid Grid.Row="2" Background="AliceBlue" Margin="0,0,-0.4,111.4" VerticalAlignment="Bottom" RenderTransformOrigin="0.511,-2.322" Height="278">
+                <Grid Background="red" Margin="0,0,0,235">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label x:Name="FirstRibbonText" Foreground="White"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label x:Name="SecondRibbonText" Foreground="White"></Label>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0,64,0,175" Background="Red">
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label VerticalAlignment="Center">Please provide your selection</Label>
+                    </StackPanel>
+
+                </Grid>
+                <Grid Margin="0,108,0,0">
+                    <ListView x:Name="SnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                                    <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                        <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                        <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Background="Black" Height="106" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4"/>
+        </Grid>
 
     </Grid>
 </Window>

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Jollibee.App
 {
     /// <summary>
-    /// Interaction logic for JollibeeCheckIn.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class JollibeeCheckIn : Window
+    public partial class Home : Window
     {
-        public JollibeeCheckIn()
+        public Home()
         {
             InitializeComponent();
         }

@@ -53,7 +53,7 @@ namespace Jollibee.App
         private void OpenMainWindow()
         {
             // Window mainWindow = new MainWindow();
-            JollibeeCheckIn mainWindow = new JollibeeCheckIn();
+            Home mainWindow = new Home();
             mainWindow.Show();
             this.Close();
         }
