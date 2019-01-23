@@ -25,9 +25,8 @@ namespace Jollibee.App
         //this.TvBox.ItemsSource =null;
         ///  DetailedProduct SelectedProduct;
 
-        MainWindow SelectedProduct=new MainWindow();
-        public event EventHandler UCButtonClicked;
-
+        MainWindow SelectedProduct = new MainWindow();
+     
 
         public ProductDetailView(int index)
         {
@@ -57,22 +56,19 @@ namespace Jollibee.App
         }
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //UCButtonClicked(this, e);
-
             ProductsData item = (ProductsData)ProductsBox.SelectedItem;
-            //SelectedProduct = new DetailedProduct(item);         
-
-            SelectedProduct.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                SelectedProduct.CallFromProductDetail(item);
-                //SelectedProduct.MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
-                //SelectedProduct.MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;
-
-            }));
-
-            //SelectedProduct.Show();
-            //SelectedProduct = new SelectedProductDetails(item);
-            //SelectedProduct.Visibility = Visibility.Visible;
+            MainWindow win = (MainWindow)Window.GetWindow(this);
+            win.MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
+            win.MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;
+            var productsList = ProductsList.LoadProductsInfo(0);
+            ProductsData selectedItem = productsList.Where(t => t.Id == item.Id).Select(t => t).SingleOrDefault();
+            var uri = new Uri(selectedItem.ImageData.ToString());
+            win.ProductDetailImage.Source = new BitmapImage(uri);
+            win.ProductDesc.Content = selectedItem.Title;
+            win.ProductPrice.Content = selectedItem.Price;
+            win.FirstRibbonText.Content = "1 pc of " + selectedItem.Title;
+            win.SecondRibbonText.Content = selectedItem.Price;
+            win.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
         }
 
     }

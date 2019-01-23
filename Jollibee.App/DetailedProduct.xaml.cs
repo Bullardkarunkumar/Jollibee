@@ -32,11 +32,17 @@ namespace Jollibee.App
             FirstRibbonText.Content = "1 pc of "+ selectedItem.Title;
             SecondRibbonText.Content = selectedItem.Price;           
             this.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
+            this.CloseButton.Style = this.Resources["ToggleButtonWindowClose"] as Style;           
         }
 
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            
+            //ProductsData[] seletedProducts = new ProductsData[] { item };
+            //this.SnacksBoxSelected.ItemsSource = seletedProducts;
+        }
+        private void Border_MouseLeftButtonUpSelected(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

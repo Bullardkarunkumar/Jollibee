@@ -21,10 +21,11 @@ namespace Jollibee.App
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {       
+    {
         ProductDetailView productDetailView;
         JollibeeSessionValues sessions;
         int windowCount = 0;
+        ProductsData[] productList = new ProductsData[] { };
         public MainWindow()
         {
             InitializeComponent();
@@ -79,19 +80,15 @@ namespace Jollibee.App
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            if (windowCount!=0)
-            {
-                MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
-            }
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //UC1.UCButtonClicked += new EventHandler(DoHide);
             GetProductsProfile();
         }
         private void DoHide(Object sender, EventArgs e)
         {
-           // label1.Content = "Hidden";
+            // label1.Content = "Hidden";
         }
         private async void GetProductsProfile()
         {
@@ -124,32 +121,21 @@ namespace Jollibee.App
 
         }
 
-        public void CallFromProductDetail(ProductsData item)
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            windowCount = 1;
-            EventArgs obj = new EventArgs();            
-            int i = 0;
-            this.Activated += (ss, ee) =>
-            {
-                if (i++ == 0) //not the first time...
-                    Window_Activated(this, EventArgs.Empty);
-            };
-            //MainWindowWithLeftPanel.Visibility = Visibility.Hidden;
-            //MainWindowWithOutLeftPanel.Visibility = Visibility.Visible;           
-            //var productsList = ProductsList.LoadProductsInfo(0);
-            //ProductsData selectedItem = productsList.Where(t => t.Id == item.Id).Select(t => t).SingleOrDefault();
-            //var uri = new Uri(selectedItem.ImageData.ToString());
-            //ProductDetailImage.Source = new BitmapImage(uri);
-            //ProductDesc.Content = selectedItem.Title;
-            //ProductPrice.Content = selectedItem.Price;
-            //FirstRibbonText.Content = "1 pc of " + selectedItem.Title;
-            //SecondRibbonText.Content = selectedItem.Price;
-            //this.SnacksBox.ItemsSource = ProductsList.LoadSnacks();
-            //this.Show();
+           
+            ProductsData item = (ProductsData)SnacksBox.SelectedItem;
+            Array.Resize(ref productList, productList.Length + 1);
+            productList[productList.Length - 1] = item;
+            this.SelectedProductsSnacksBox.ItemsSource = productList;
         }
 
-      
-        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Border_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
 
         }

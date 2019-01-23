@@ -9,20 +9,42 @@
         Title="JobilleDesk" FontWeight="Bold" Height="450" Width="800" MinHeight="600" MinWidth="1100" Activated="Window_Activated"
         Loaded="Window_Loaded" WindowState="Maximized" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Closing="Window_Closing">
     <Window.Resources>
+        <!-- Our style for the ToggleButton -->
+        <Style x:Key="ToggleButtonWindowClose" TargetType="{x:Type Label}">
+            <!-- Here you can set the initial properties for the control -->
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
 
-        <Storyboard x:Key="sbShowLeftMenu" >
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-100,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
-        </Storyboard>
-        <Storyboard x:Key="sbHideLeftMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-100,0" AccelerationRatio=".9" Duration="0:0:1" />
-        </Storyboard>
+            <!-- Template needs to completely re-writing the standard control -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <!-- Then responsible for the content. In our case it did not really need, because it is set Path -->
+                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <!-- Our Path. Shows a cross -->
+                            <Path x:Name="CloseWindow" SnapsToDevicePixels="True" ToolTip="Close window" Width="18" Height="17" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Fill" Fill="#2D2D2D" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z " />
+                        </Grid>
 
+                        <!-- Trigger fires on the property -->
+                        <ControlTemplate.Triggers>
+                            <!-- Here change the color when the mouse cursor -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CloseWindow" Property="Fill" Value="#C10000" />
+                            </Trigger>
+
+                            <!-- Use ToggleButton, because it has a property IsChecked, accessible through the style -->
+                            <Trigger Property="IsChecked" Value="True">
+                                <!--<Setter Property="local:WindowBehaviours.Close" Value="True" />-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Grid Grid.Row="0"  Visibility="{Binding MainWindowWithLeftPanelVisible}" Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel" >
-            <!--<Grid.Background>
-            <ImageBrush ImageSource="Resources/LoginImage.png"  Stretch="UniformToFill"/>
-        </Grid.Background>-->
+        <Grid Grid.Row="0" Visibility="Collapsed"  Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="40"/>
@@ -43,8 +65,8 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" >
-                    <!--<Label Width="120" Content="OmniDesk" FontSize="20" FontWeight="Bold" Foreground="White"/>-->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="28" Margin="0,-11,925.2,0" >
+                    <!--<ToggleButton Name="CloseButton" Style="{StaticResource ToggleButtonWindowClose}" />-->
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
@@ -82,7 +104,7 @@
         </Grid>
 
 
-        <Grid Grid.Row="1" Visibility="{Binding MainWindowWithOutLeftPanelVisible}" x:Name="MainWindowWithOutLeftPanel">
+        <Grid Grid.Row="1"  x:Name="MainWindowWithOutLeftPanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="50"/>
@@ -112,7 +134,7 @@
                     </StackPanel>
 
                 </Grid>
-                <Grid Margin="0,108,0,0">
+                <Grid Background="Yellow" Margin="0,108,0,86">
                     <ListView x:Name="SnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -122,6 +144,27 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                                    <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                        <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                        <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+                <Grid Background="Green" Margin="0,192,0,0">
+                    <ListView x:Name="SelectedProductsSnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border MouseLeftButtonDown="Border_MouseLeftButtonDown_1">
                                     <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                                         <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
                                         <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>

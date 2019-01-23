@@ -8,20 +8,21 @@
         Title="DetailedProduct" FontWeight="Bold" Height="450" Width="800" MinHeight="600" MinWidth="1100">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="AliceBlue" Margin="0,10,-0.4,408.4" Grid.RowSpan="3" VerticalAlignment="Center" Height="152">
+        <Grid Grid.Row="0" Background="AliceBlue" Margin="0,0,-0.4,413.4" Grid.RowSpan="3" VerticalAlignment="Center" Height="157">
+
             <Image x:Name="ProductDetailImage" Margin="0,0,0,57"/>
-            <StackPanel Margin="0,95,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Margin="538,76,537,0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label x:Name="ProductDesc" VerticalAlignment="Center" Foreground="Black" Background="Yellow" Height="24" Margin="0,0,0.4,0"></Label>
                 <Label x:Name="ProductPrice" VerticalAlignment="Center" Foreground="Black" Background="DeepPink" Height="24" Margin="0,0,0.4,0"></Label>
             </StackPanel>
 
         </Grid>
-        <Grid Grid.Row="2" Background="AliceBlue" Margin="0,0,-0.4,111.4" VerticalAlignment="Bottom" RenderTransformOrigin="0.511,-2.322" Height="278">
-            <Grid Background="red" Margin="0,0,0,235">
+        <Grid Background="AliceBlue" Margin="0,0,-0.4,143.4" VerticalAlignment="Bottom" RenderTransformOrigin="0.511,-2.322" Height="292" Grid.Row="2">
+            <Grid Background="red" Margin="0,0,0,270">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label x:Name="FirstRibbonText" Foreground="White"></Label>
                 </StackPanel>
@@ -29,20 +30,41 @@
                     <Label x:Name="SecondRibbonText" Foreground="White"></Label>
                 </StackPanel>
             </Grid>
-            <Grid Margin="0,64,0,175" Background="Red">
+            <Grid Margin="0,52,0,175" Background="Red">
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label VerticalAlignment="Center">Please provide your selection</Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <Label VerticalAlignment="Center" >Please provide your selection</Label>
+                    <!--<ToggleButton Name="CloseButton" Style="{StaticResource ToggleButtonWindowClose}" />-->
+                    <ToggleButton Name="CloseButton"  />
                 </StackPanel>
 
             </Grid>
-            <Grid Margin="0,108,0,0">
-                <ListView x:Name="SnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ItemsControl.ItemsPanel>
+            <Grid Margin="0,83,0,115">
+                <ListView  x:Name="SnacksBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
                         </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                                <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                    <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                    <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <ListView Background="OrangeRed" x:Name="SnacksBoxSelected" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="98" Margin="0,106,0.4,-110" RenderTransformOrigin="0.502,1.944">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
@@ -57,6 +79,7 @@
                 </ListView>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2" Background="Black" Height="106" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4"/>
+        <Grid Grid.Row="2" Background="Black" Height="140" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4"/>
+
     </Grid>
 </Window>
