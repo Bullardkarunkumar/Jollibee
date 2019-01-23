@@ -123,11 +123,11 @@ namespace Jollibee.App
 
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-           
+
             ProductsData item = (ProductsData)SnacksBox.SelectedItem;
             Array.Resize(ref productList, productList.Length + 1);
             productList[productList.Length - 1] = item;
-            this.SelectedProductsSnacksBox.ItemsSource = productList;
+            this.selectedProductsBox.ItemsSource = productList;
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -138,6 +138,36 @@ namespace Jollibee.App
         private void Border_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //productList;
+            this.MainWindowWithLeftPanel.Visibility = Visibility.Visible;
+            this.MainWindowWithOutLeftPanel.Visibility = Visibility.Hidden;
+            // selectedProductsBox.ItemsSource = productList;
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Border_MouseLeftButtonDown_2(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Border_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void AddProductToCart_Click(object sender, RoutedEventArgs e)
+        {
+            this.MainWindowWithLeftPanel.Visibility = Visibility.Visible;
+            this.MainWindowWithOutLeftPanel.Visibility = Visibility.Hidden;
+            selectedProductsBox.ItemsSource = productList;
         }
     }
 }

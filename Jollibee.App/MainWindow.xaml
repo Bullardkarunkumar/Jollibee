@@ -44,7 +44,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid Grid.Row="0" Visibility="Collapsed"  Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel" >
+        <Grid Grid.Row="0"  Style="{StaticResource GreyGridContent}" x:Name="MainWindowWithLeftPanel" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="40"/>
@@ -71,17 +71,13 @@
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                     <Label HorizontalAlignment="Center" Grid.Column="0" x:Name="NotifictaionLable" Height="53"  Margin="10 3" FontSize="25" Content="Jollibee" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="MediumVioletRed"/>
-
                 </StackPanel>
-
-
-
                 <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="0,0,10,0"
                         VerticalAlignment="Center" HorizontalAlignment="Right" >
                     <Label Height="30" FontSize="16" x:Name="Username" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Foreground="White"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="2" x:Name="GridMain" Background="Transparent">
+            <Grid Grid.Row="2" x:Name="GridMain" Background="Transparent" Margin="0,0,-0.4,57.4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2"/>
                     <ColumnDefinition Width="*"/>
@@ -98,13 +94,30 @@
                 </Grid>
 
             </Grid>
-            <Grid Grid.Row="2" Height="102" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom" Background="Black" Grid.RowSpan="2">
-
+            <Grid Grid.Row="2" Height="104" Margin="0,0,-0.4,0.4" VerticalAlignment="Bottom" Background="Black" Grid.RowSpan="2">
+                <ListView x:Name="selectedProductsBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                                <StackPanel Background="Transparent"  Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                    <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                    <TextBlock Text="{Binding Price}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Transparent" Foreground="Black"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </Grid>
 
 
-        <Grid Grid.Row="1"  x:Name="MainWindowWithOutLeftPanel">
+        <Grid Grid.Row="1" Visibility="Collapsed"  x:Name="MainWindowWithOutLeftPanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="50"/>
@@ -175,8 +188,17 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
+
+                <Grid Margin="0,278,0,-39">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="ResetProductToCart" Background="Red" Width="500"/>
+                        <Button x:Name="AddProductToCart" Background="Yellow" Width="500" Click="AddProductToCart_Click"/>
+
+                    </StackPanel>
+                </Grid>
             </Grid>
-            <Grid Grid.Row="2" Background="Black" Height="106" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4"/>
+            <Grid Grid.Row="2" Background="Black" Height="75" VerticalAlignment="Bottom" Margin="0,0,-0.4,0.4">
+            </Grid>
         </Grid>
 
     </Grid>
